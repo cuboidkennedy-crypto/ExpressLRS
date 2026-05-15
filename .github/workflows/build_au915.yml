@@ -1,0 +1,22 @@
+name: Build AU915 Firmware
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Build Firmware
+        uses: ExpressLRS/build-action@main
+        with:
+          target: Unified_ESP8285_LR1121_RX_via_UART   # або спробуй Unified_ESP8285_900_LR1121_RX
+          options: |
+            Regulatory_Domain_AU_915=1
+            # Якщо потрібно інші опції:
+            # UART_INVERTED=1
+            # LOCK_ON_FIRST_CONNECTION=1
